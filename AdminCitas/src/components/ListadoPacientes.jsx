@@ -1,7 +1,7 @@
 
 function ListadoPacientes(){
     return(
-        <div>
+        <div className="outline w-3/4">
             <h2>Listado Pacientes</h2>
         </div>
     );
