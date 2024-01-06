@@ -1,7 +1,11 @@
 
 
-function Paciente({paciente}){
+function Paciente({paciente, setPaciente}){
     const color = getRandomColor();
+
+    function editPaciente(){
+        setPaciente(paciente);
+    }
     
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
@@ -37,7 +41,7 @@ function Paciente({paciente}){
             <div className="w-full h-1/6 rounded-b-xl flex">
 
                 <div className="w-1/2 flex justify-center items-center">
-                    <i className="fa-solid fa-file-pen text-2xl text-blue-600 hover:text-blue-700 hover:cursor-pointer"></i>
+                    <i onClick={editPaciente} className="fa-solid fa-file-pen text-2xl text-blue-600 hover:text-blue-700 hover:cursor-pointer"></i>
                 </div>
 
                 <div className="w-1/2 flex justify-center items-center border-l-2 border-l-gray-200">
