@@ -31,7 +31,11 @@ function Formulario({pacientes, setPacientes}){
 
         toast.success("Paciente Agregado Correctamente!", {toastId: id});
         const nuevosPacientes = [...pacientes, info];
-        setPacientes(nuevosPacientes);       
+        setPacientes(nuevosPacientes);
+        resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
+        e.target.reset();
+        
+
     }
 
 
@@ -87,5 +91,15 @@ function Formulario({pacientes, setPacientes}){
 function VerifyIfInfoIsEmpty(info){    
     return Object.values(info).some( i => i === "");
 }
+
+function resetStates({setMascota, setPropietario, setEmail, setAlta, setSintomas}){
+    setMascota("");
+    setPropietario("");
+    setEmail("");
+    setAlta("");
+    setSintomas("");
+}
+
+//funtion to reset the states 
 
 export default Formulario;

@@ -6,8 +6,11 @@ import Formulario from "./components/Formulario"
 import ListadoPacientes from "./components/ListadoPacientes"
 
 
-function App() { 
+function App() {
   const [pacientes, setPacientes] = useState([]);
+
+  console.log(pacientes)
+
   return (
     <div className="h-screen container mx-auto pt-10">
       <Header/>
@@ -18,5 +21,8 @@ function App() {
     </div>
   )
 }
+
+
+
 
 export default App
