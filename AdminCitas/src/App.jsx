@@ -1,16 +1,16 @@
 //hooks
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import Header from "./components/Header"
 import Formulario from "./components/Formulario"
-import ListadoPacientes from "./components/ListadoPacientes"
+import ListadoPacientes from "./components/ListadoPacientes";
+import { Storage } from "./classes/Storage";
 
 
 function App() {
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({});
 
-  console.log(pacientes)
 
   return (
     <div className="h-screen container mx-auto pt-10">
@@ -22,8 +22,5 @@ function App() {
     </div>
   )
 }
-
-
-
 
 export default App

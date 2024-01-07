@@ -1,7 +1,7 @@
 import {useState} from "react"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Storage } from "../classes/Storage";
 
 function Formulario({pacientes, setPacientes, paciente}){
     
@@ -60,23 +60,42 @@ function Formulario({pacientes, setPacientes, paciente}){
                 />
                 <div className="mb-2">
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Nombre Mascota</label>
-                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" type="text" placeholder="Nombre de la mascota" onChange={e => setMascota(e.target.value)} value={paciente.mascota} />
+                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
+                    type="text" 
+                    placeholder="Nombre de la mascota" 
+                    onChange={e => setMascota(e.target.value)} 
+                    value={mascota} />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Nombre Propietario</label>
-                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" type="text" placeholder="Nombre del propietario" onChange={e=>setPropietario(e.target.value)} value={paciente.propietario} />
+                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
+                    type="text" 
+                    placeholder="Nombre del propietario" 
+                    onChange={e=>setPropietario(e.target.value)} 
+                    value={propietario} />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Email</label>
-                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" type="text" placeholder="Correo electronico" onChange={e => setEmail(e.target.value)} value={paciente.email}/>
+                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
+                    type="text" 
+                    placeholder="Correo electronico" 
+                    onChange={e => setEmail(e.target.value)} 
+                    value={email}/>
                 </div>
                 <div className="mb-2">
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Alta</label>
-                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" type="date" onChange={e => setAlta(e.target.value)} value={paciente.alta} />
+                    <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
+                    type="date" 
+                    onChange={e => setAlta(e.target.value)} 
+                    value={alta} />
                 </div>
                 <div className="mb-4">
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Sintomas</label>
-                    <textarea className="min-w-full min-h-40 max-h-40 border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" name="" cols="30" rows="10" placeholder="Describe los sintomas" onChange={e => setSintomas(e.target.value)} value={paciente.sintomas}></textarea>
+                    <textarea className="min-w-full min-h-40 max-h-40 border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
+                    name="" cols="30" rows="10" 
+                    placeholder="Describe los sintomas" 
+                    onChange={e => setSintomas(e.target.value)} 
+                    value={sintomas}></textarea>
                 </div>
                 <div className="">
                     <button className="hover:bg-indigo-700 w-full block bg-indigo-600 py-3 text-white uppercase font-bold rounded-lg">Agregar Paciente</button>
@@ -91,10 +110,7 @@ function VerifyIfInfoIsEmpty(info){
     return Object.values(info).some( i => i === "");
 }
 
-
-
 //function to generateRandomID
-
 function generateRandomId(){
     return crypto.randomUUID() + Date.now();
 }

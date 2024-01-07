@@ -1,0 +1,13 @@
+{
+  "name": "AdminCitas",
+  "version": "1.0.0",
+  "description": "Proyecto de administrador de citas del curso de React del profesor Juan De La Torre",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["administrador de citas"],
+  "author": "Cheranthony",
+  "license": "ISC"
+}

@@ -1,4 +1,4 @@
-
+import { Storage } from "../classes/Storage.js";
 
 function Paciente({paciente, setPaciente}){
     const color = getRandomColor();
@@ -6,6 +6,8 @@ function Paciente({paciente, setPaciente}){
     function editPaciente(){
         setPaciente(paciente);
     }
+
+    
     
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
