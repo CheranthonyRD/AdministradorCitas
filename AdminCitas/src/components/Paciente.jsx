@@ -2,7 +2,7 @@ import { Storage } from "../classes/Storage.js";
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
-function Paciente({paciente, setPaciente}){
+function Paciente({paciente, setPaciente, setPacientes}){
     const color = getRandomColor();
 
     function editPaciente(){
@@ -20,6 +20,8 @@ function Paciente({paciente, setPaciente}){
            }
         }
 
+        const pacientes = await getAllPacientes();
+        setPacientes(pacientes);
         toast.success("El paciente fue borrado con exito", {toastId: "1"});
         return;
     }
@@ -29,19 +31,6 @@ function Paciente({paciente, setPaciente}){
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
             
-            <ToastContainer 
-                    position="top-left"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="colored"
-            />
-
             {/*Mascota nombre*/}
             <h3 className={"text-center py-3 h-1/6 text-white rounded-t-xl uppercase " + color}>{paciente.mascota}</h3>
 
@@ -93,6 +82,18 @@ function getRandomColor(){
     const random = Math.floor(Math.random() * length);
 
    return colors[random];
+}
+
+async function getAllPacientes(){
+    const URL = "http://localhost:1234/paciente/";
+    const response = await fetch(URL);
+
+    if(response.status === 200){
+        const data = await response.json();
+        return data;
+    }
+
+    return response.json();
 }
 
 

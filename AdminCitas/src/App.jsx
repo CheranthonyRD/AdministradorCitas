@@ -25,7 +25,7 @@ function App() {
       <Header/>
       <div className="flex gap-5 lg:pl-4">
         <Formulario paciente={paciente} pacientes={pacientes} setPacientes={setPacientes}/>
-        <ListadoPacientes pacientes={pacientes} setPaciente={setPaciente}/>
+        <ListadoPacientes pacientes={pacientes} setPaciente={setPaciente} setPacientes={setPacientes}/>
       </div>
     </div>
   )

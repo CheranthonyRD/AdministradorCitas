@@ -1,7 +1,7 @@
 import Paciente from "./Paciente";
 
 
-function ListadoPacientes({pacientes, setPaciente}){
+function ListadoPacientes({pacientes, setPaciente, setPacientes}){
     
     return(
         <div className=" w-3/4 px-4 mb-5">
@@ -13,7 +13,7 @@ function ListadoPacientes({pacientes, setPaciente}){
                 <>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {pacientes.length >= 1 && pacientes.map((p)=>
-                            <Paciente setPaciente={setPaciente} key={p._id} paciente={p}/>
+                            <Paciente setPacientes={setPacientes} setPaciente={setPaciente} key={p._id} paciente={p}/>
                         )}
                     </div> 
                 </>
