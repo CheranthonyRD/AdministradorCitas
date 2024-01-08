@@ -3,7 +3,7 @@ import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { Storage } from "../classes/Storage";
 
-function Formulario({pacientes, setPacientes, paciente}){
+function Formulario({pacientes, paciente, render, setRender}){
     
     const [mascota, setMascota] = useState("");
     const [propietario, setPropietario] = useState("");
@@ -34,7 +34,9 @@ function Formulario({pacientes, setPacientes, paciente}){
         if(Object.getOwnPropertyNames(insert).includes("success")){
             toast.success(insert.success, {toastId: id});
             resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
-            setPacientes([...pacientes, info]);
+           
+            setRender(!render);
+
             e.target.reset();
             return;
         }

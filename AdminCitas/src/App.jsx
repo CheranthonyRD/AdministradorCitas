@@ -10,6 +10,7 @@ import { Storage } from "./classes/Storage";
 function App() {
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({});
+  const [render, setRender] = useState(false);
 
 
   useEffect(()=>{
@@ -18,13 +19,13 @@ function App() {
     .then(data=>{
       setPacientes(data);
     });
-  }, [])
+  }, [render])
 
   return (
     <div className="h-screen container mx-auto pt-10">
       <Header/>
       <div className="flex gap-5 lg:pl-4">
-        <Formulario paciente={paciente} pacientes={pacientes} setPacientes={setPacientes}/>
+        <Formulario paciente={paciente} pacientes={pacientes} render={render} setRender={setRender}/>
         <ListadoPacientes pacientes={pacientes} setPaciente={setPaciente} setPacientes={setPacientes}/>
       </div>
     </div>
