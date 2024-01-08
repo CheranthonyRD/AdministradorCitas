@@ -13,7 +13,7 @@ function ListadoPacientes({pacientes, setPaciente}){
                 <>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {pacientes.length >= 1 && pacientes.map((p)=>
-                            <Paciente setPaciente={setPaciente} key={p.id} paciente={p}/>
+                            <Paciente setPaciente={setPaciente} key={p._id} paciente={p}/>
                         )}
                     </div> 
                 </>
@@ -24,9 +24,7 @@ function ListadoPacientes({pacientes, setPaciente}){
                     <span className="text-indigo-600">y administralos</span></p>
                  </div>   
                 </>
-            )}
-
-                     
+            )}                     
         </div>
     );
 }

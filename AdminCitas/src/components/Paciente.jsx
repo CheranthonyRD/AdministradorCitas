@@ -1,4 +1,6 @@
 import { Storage } from "../classes/Storage.js";
+import {ToastContainer, toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 function Paciente({paciente, setPaciente}){
     const color = getRandomColor();
@@ -7,17 +9,45 @@ function Paciente({paciente, setPaciente}){
         setPaciente(paciente);
     }
 
+    async function deletePaciente(){
+        const URL = `http://localhost:1234/paciente/delete/${paciente._id}`;
+        const deleteOne = await fetch(URL, {method: "DELETE"});
+
+        if(deleteOne.status !== 204){
+           if(!toast.isActive()){
+            toast.error("El paciente no pudo ser borrado", {toastId: "1"});
+            return;
+           }
+        }
+
+        toast.success("El paciente fue borrado con exito", {toastId: "1"});
+        return;
+    }
+
     
     
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
             
+            <ToastContainer 
+                    position="top-left"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+            />
+
             {/*Mascota nombre*/}
             <h3 className={"text-center py-3 h-1/6 text-white rounded-t-xl uppercase " + color}>{paciente.mascota}</h3>
-            
+
             {/*info*/}
             <div className="w-full h-5/6 flex flex-col bg-gray-100 px-2">
-
+                
                 <div id="" className="flex flex-col border-b-2 border-b-gray-200">
                     <p className="font-bold">Propietario: {" "} </p>
                     <span className="text-lg">{paciente.propietario}</span>
@@ -47,7 +77,7 @@ function Paciente({paciente, setPaciente}){
                 </div>
 
                 <div className="w-1/2 flex justify-center items-center border-l-2 border-l-gray-200">
-                    <i className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
+                    <i onClick={deletePaciente} className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
                 </div>
             </div>
         </div>

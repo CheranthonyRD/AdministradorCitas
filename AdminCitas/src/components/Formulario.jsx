@@ -11,11 +11,10 @@ function Formulario({pacientes, setPacientes, paciente}){
     const [alta, setAlta] = useState("");
     const [sintomas, setSintomas] = useState("");
 
-    function handleForm(e){
+    async function handleForm(e){
         e.preventDefault();
         const id = "id"; 
         const info = {
-            id: generateRandomId(),
             mascota,
             propietario,
             email,
@@ -30,12 +29,19 @@ function Formulario({pacientes, setPacientes, paciente}){
             return;
         }
 
-        toast.success("Paciente Agregado Correctamente!", {toastId: id});
-        const nuevosPacientes = [...pacientes, info];
-        setPacientes(nuevosPacientes);
-        resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
-        e.target.reset();
+         const insert = await insertOne(info);
+        
+        if(Object.getOwnPropertyNames(insert).includes("success")){
+            toast.success(insert.success, {toastId: id});
+            resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
+            setPacientes([...pacientes, info]);
+            e.target.reset();
+            return;
         }
+
+        return toast.error(insert.error, {toastId: id});
+        
+    }
 
 
     
@@ -122,6 +128,28 @@ function resetStates({setMascota, setPropietario, setEmail, setAlta, setSintomas
     setEmail("");
     setAlta("");
     setSintomas("");
+}
+
+//function to insert Paciente with API
+
+async function insertOne(paciente){
+    const URL = "http://localhost:1234/paciente/create";
+
+    const request = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(paciente)
+    }
+
+    const response = await fetch(URL, request);
+
+    if(response.status === 400){
+        return response.json();
+    }
+
+    return response.json();
 }
 
 export default Formulario;
