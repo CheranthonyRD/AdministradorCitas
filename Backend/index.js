@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT ?? 0;
 
 app.use(express.json());
+app.disable("x-powered-by");
 app.use(cors());
 
 app.use("/paciente", routerPaciente);
