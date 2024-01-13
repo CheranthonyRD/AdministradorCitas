@@ -3,7 +3,7 @@ import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { Storage } from "../classes/Storage";
 
-function Formulario({pacientes, paciente, render, setRender}){
+function Formulario({pacientes, paciente, render, setRender, setPaciente}){
     
     const [mascota, setMascota] = useState("");
     const [propietario, setPropietario] = useState("");
@@ -56,6 +56,7 @@ function Formulario({pacientes, paciente, render, setRender}){
             if(update.status === 200){
                 toast.success("Paciente Actualizado correctamente!", {toastId: id});
                 resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
+                setPaciente({});
                 setRender(!render);
             }
             return;
