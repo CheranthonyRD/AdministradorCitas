@@ -32,11 +32,8 @@ function Formulario({pacientes, paciente, render, setRender}){
             alta,
             sintomas
         }
-
-        if(paciente._id){
-            console.log("Actualizando");
-            return;
-        }     
+        
+        console.log("info", info);
 
         if(VerifyIfInfoIsEmpty(info)){
             if(!toast.isActive(id)){
@@ -45,14 +42,35 @@ function Formulario({pacientes, paciente, render, setRender}){
             return;
         }
 
-         const insert = await insertOne(info);
+        if(paciente._id){
+            const URL = `http://localhost:1234/paciente/update/${paciente._id}`;
+            const request = {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "PATCH",
+                body: JSON.stringify(info)
+            }
+            const update = await fetch(URL, request);
+
+            if(update.status === 200){
+                toast.success("Paciente Actualizado correctamente!", {toastId: id});
+                resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
+                setRender(!render);
+            }
+            return;
+        }
+
+        const insert = await insertOne(info);
         
         if(Object.getOwnPropertyNames(insert).includes("success")){
             toast.success(insert.success, {toastId: id});
-            resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});           
+            resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
             setRender(!render);
             return;
         }
+
+      
 
         return toast.error(insert.error, {toastId: id});
         
