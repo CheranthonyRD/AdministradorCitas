@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import db from "../database/database.js";
 
 class PacienteModel {
@@ -35,6 +36,18 @@ class PacienteModel {
             return true;
         }
         return false;
+    }
+
+    async updateOneById(id, body){
+
+        const update = await this.collection.updateOne({_id: id}, {$set: body});
+        console.log(update);
+       if(update.acknowledged){
+        return true;
+       }
+
+       return false;
+        
     }
 }
 

@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { Storage } from "../classes/Storage";
@@ -11,8 +11,19 @@ function Formulario({pacientes, paciente, render, setRender}){
     const [alta, setAlta] = useState("");
     const [sintomas, setSintomas] = useState("");
 
+    useEffect(()=>{
+       if(Object.keys(pacientes).length > 1){
+        setMascota(paciente.mascota);
+        setPropietario(paciente.propietario);
+        setEmail(paciente.email);
+        setAlta(paciente.alta);
+        setSintomas(paciente.sintomas);
+       }
+    }, [paciente]);
+
     async function handleForm(e){
         e.preventDefault();
+        
         const id = "id"; 
         const info = {
             mascota,
@@ -20,7 +31,12 @@ function Formulario({pacientes, paciente, render, setRender}){
             email,
             alta,
             sintomas
-        }        
+        }
+
+        if(paciente._id){
+            console.log("Actualizando");
+            return;
+        }     
 
         if(VerifyIfInfoIsEmpty(info)){
             if(!toast.isActive(id)){
@@ -33,11 +49,8 @@ function Formulario({pacientes, paciente, render, setRender}){
         
         if(Object.getOwnPropertyNames(insert).includes("success")){
             toast.success(insert.success, {toastId: id});
-            resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});
-           
+            resetStates({setMascota,setPropietario,setEmail,setAlta,setSintomas});           
             setRender(!render);
-
-            e.target.reset();
             return;
         }
 
@@ -52,7 +65,7 @@ function Formulario({pacientes, paciente, render, setRender}){
             <h2 className="text-center text-4xl font-bold mb-5">Seguimiento de Pacientes</h2>
             <p className="text-center text-xl font-bold mb-10">Añade Pacientes y {" "} <span className="text-indigo-600">Administralos</span></p>
 
-            <form onSubmit={handleForm} className="bg-white px-5 py-8 rounded-lg shadow-xl">
+            <form  className="bg-white px-5 py-8 rounded-lg shadow-xl">
             
                 <ToastContainer 
                     position="top-left"
@@ -106,7 +119,7 @@ function Formulario({pacientes, paciente, render, setRender}){
                     value={sintomas}></textarea>
                 </div>
                 <div className="">
-                    <button className="hover:bg-indigo-700 w-full block bg-indigo-600 py-3 text-white uppercase font-bold rounded-lg">Agregar Paciente</button>
+                    <button onClick={handleForm} className="hover:bg-indigo-700 w-full block bg-indigo-600 py-3 text-white uppercase font-bold rounded-lg">{paciente._id ? "Actualizar Paciente" : "Agregar Paciente"}</button>
                 </div>
             </form>
         </div>
@@ -146,10 +159,6 @@ async function insertOne(paciente){
     }
 
     const response = await fetch(URL, request);
-
-    if(response.status === 400){
-        return response.json();
-    }
 
     return response.json();
 }

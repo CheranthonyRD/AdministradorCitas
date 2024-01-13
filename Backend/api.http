@@ -6,3 +6,13 @@ POST http://localhost:1234/paciente/create
 
 ###
 GET http://localhost:1234/paciente/
+
+###
+PATCH  http://localhost:1234/paciente/update/da020400-9e31-4f7e-bf12-b6079002003c-1705037806434
+Content-Type: application/json
+
+
+{
+    "propietario": "Julio 2",
+    "email": "actualizado@actualizado222.com"
+}
