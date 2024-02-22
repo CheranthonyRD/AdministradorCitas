@@ -1,7 +1,9 @@
 import Paciente from "./Paciente";
+import {usePacientes} from "../hooks/usePacientes.js";
+import { useState } from "react";
 
-
-function ListadoPacientes({pacientes, setPaciente, setPacientes}){
+function ListadoPacientes({setPaciente, setPacientes, render, setRender}){
+    const {pacientes, loadPacientes} = usePacientes({render});
     
     return(
         <div className=" w-3/4 px-4 mb-5">
@@ -13,7 +15,7 @@ function ListadoPacientes({pacientes, setPaciente, setPacientes}){
                 <>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {pacientes.length >= 1 && pacientes.map((p)=>
-                            <Paciente setPacientes={setPacientes} setPaciente={setPaciente} key={p._id} paciente={p}/>
+                            <Paciente setPacientes={loadPacientes} setPaciente={setPaciente} key={p._id} paciente={p} setRender={setRender}/>
                         )}
                     </div> 
                 </>

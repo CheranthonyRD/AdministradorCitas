@@ -1,5 +1,5 @@
-import { Storage } from "../classes/Storage.js";
-import {ToastContainer, toast} from "react-toastify"
+
+import { toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 function Paciente({paciente, setPaciente, setPacientes}){
@@ -20,8 +20,7 @@ function Paciente({paciente, setPaciente, setPacientes}){
            }
         }
 
-        const pacientes = await getAllPacientes();
-        setPacientes(pacientes);
+        setPacientes();
         toast.success("El paciente fue borrado con exito", {toastId: "1"});
         return;
     }

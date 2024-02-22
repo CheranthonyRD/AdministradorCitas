@@ -3,7 +3,7 @@ import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { Storage } from "../classes/Storage";
 
-function Formulario({pacientes, paciente, render, setRender, setPaciente}){
+function Formulario({pacientes, paciente, setPaciente, setPacientes, setRender, render}){
     
     const [mascota, setMascota] = useState("");
     const [propietario, setPropietario] = useState("");
@@ -32,8 +32,6 @@ function Formulario({pacientes, paciente, render, setRender, setPaciente}){
             alta,
             sintomas
         }
-        
-        console.log("info", info);
 
         if(VerifyIfInfoIsEmpty(info)){
             if(!toast.isActive(id)){
@@ -148,11 +146,6 @@ function Formulario({pacientes, paciente, render, setRender, setPaciente}){
 
 function VerifyIfInfoIsEmpty(info){    
     return Object.values(info).some( i => i === "");
-}
-
-//function to generateRandomID
-function generateRandomId(){
-    return crypto.randomUUID() + Date.now();
 }
 
 //funtion to reset the states
