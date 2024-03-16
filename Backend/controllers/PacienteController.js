@@ -39,11 +39,11 @@ const createNewPaciente = async (req, res) =>{
 const deleteOneById = async (req, res)=>{
     const id = req.params.id;
     const paciente = await pacienteModel.deleteOneById(id);
-
+ 
     if(!paciente){
         return res.status(400).json({error: "No se pudo eliminar el paciente"});
     }
-    return res.status(204).json({success: "Se elimino el paciente"});
+    return res.status(200).json({success: "Se elimino el paciente"});
 }
 
 const updateOneById = async (req, res)=>{

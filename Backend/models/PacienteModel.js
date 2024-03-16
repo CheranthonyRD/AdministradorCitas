@@ -10,6 +10,11 @@ class PacienteModel {
         return pacientes;
     }
 
+    async getOneById({id}){
+        const paciente = await this.collection.findOne({_id:id});
+        return paciente;
+    }
+
     async create(paciente){
         const insert = await this.collection.insertOne(paciente);
 
@@ -20,13 +25,10 @@ class PacienteModel {
     }
 
     async deleteOneById(id){
+
         const paciente = await this.collection.findOneAndDelete({_id: id});
         
-        if(paciente._id){
-            return true;
-        }
-
-        return false;
+        return paciente;
     }
 
     async deleteAll(){

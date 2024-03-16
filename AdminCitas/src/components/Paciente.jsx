@@ -3,29 +3,7 @@ import { toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 function Paciente({paciente, setPaciente, setPacientes}){
-    const color = getRandomColor();
-
-    function editPaciente(){
-        setPaciente(paciente);
-    }
-
-    async function deletePaciente(){
-        const URL = `http://localhost:1234/paciente/delete/${paciente._id}`;
-        const deleteOne = await fetch(URL, {method: "DELETE"});
-
-        if(deleteOne.status !== 204){
-           if(!toast.isActive()){
-            toast.error("El paciente no pudo ser borrado", {toastId: "1"});
-            return;
-           }
-        }
-
-        setPacientes();
-        toast.success("El paciente fue borrado con exito", {toastId: "1"});
-        return;
-    }
-
-    
+    const color = getRandomColor();  
     
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
@@ -78,21 +56,9 @@ function getRandomColor(){
                     "bg-fuchsia-700", "bg-rose-700" , "bg-red-700"]
     const length = colors.length;
 
-    const random = Math.floor(Math.random() * length);
+    const randomIndex = Math.floor(Math.random() * length);
 
-   return colors[random];
-}
-
-async function getAllPacientes(){
-    const URL = "http://localhost:1234/paciente/";
-    const response = await fetch(URL);
-
-    if(response.status === 200){
-        const data = await response.json();
-        return data;
-    }
-
-    return response.json();
+   return colors[randomIndex];
 }
 
 

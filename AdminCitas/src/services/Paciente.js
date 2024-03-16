@@ -1,9 +1,10 @@
+import {HOST, PORT} from "../configs/configs.js";
 
-const URL = "http://localhost:1234/";
+const URL = `${HOST}${PORT}/paciente/`;
+
 
 export async function getAllPacientes(){
-    const FULL_PATH = URL.concat("paciente");
-    const response = await fetch(FULL_PATH);
+    const response = await fetch(URL);
     
     if(response.status !== 200){
         return false;

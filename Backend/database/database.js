@@ -5,7 +5,7 @@ import "dotenv/config";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
-let db = new Db(client, "administradorCitas");
+const db = new Db(client, "administradorCitas");
 
 try {
     await client.connect();
