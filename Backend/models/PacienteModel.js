@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import db from "../database/database.js";
 
 class PacienteModel {
@@ -26,8 +25,7 @@ class PacienteModel {
 
     async deleteOneById(id){
 
-        const paciente = await this.collection.findOneAndDelete({_id: id});
-        
+        const paciente = await this.collection.findOneAndDelete({_id: id});        
         return paciente;
     }
 
@@ -42,14 +40,8 @@ class PacienteModel {
 
     async updateOneById(id, body){
 
-        const update = await this.collection.updateOne({_id: id}, {$set: body});
-        console.log(update);
-       if(update.acknowledged){
-        return true;
-       }
-
-       return false;
-        
+        const update = await this.collection.updateOne({_id: id}, {$set: body});        
+        return update.modifiedCount;
     }
 }
 

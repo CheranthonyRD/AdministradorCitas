@@ -5,9 +5,8 @@ const routerPaciente = Router();
 
 //routes pacientes
 routerPaciente.get("/", getAllPacientes);
-routerPaciente.delete("/deleteAll", deleteAllPacientes);
 routerPaciente.post("/", createNewPaciente);
-routerPaciente.delete("/delete/:id", deleteOneById);
-routerPaciente.patch("/update/:id",updateOneById);
+routerPaciente.delete("/:id", deleteOneById);
+routerPaciente.patch("/:id",updateOneById);
 
 export default routerPaciente;
