@@ -13,6 +13,10 @@ app.use(cors());
 
 app.use("/paciente", routerPaciente);
 
+app.use((req, res)=>{
+    res.status(404).send("<h3>Page Not Found</h3>")
+});
+
 app.listen(PORT, ()=>{
     console.log(`Running in PORT ${HOST}${PORT}`);
 });

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllPacientes, deleteAllPacientes, createNewPaciente, deleteOneById, updateOneById } from "../controllers/PacienteController.js";
+import { getPacienteById,getAllPacientes, deleteAllPacientes, createNewPaciente, deleteOneById, updateOneById } from "../controllers/PacienteController.js";
 
 const routerPaciente = Router();
 
@@ -8,5 +8,6 @@ routerPaciente.get("/", getAllPacientes);
 routerPaciente.post("/", createNewPaciente);
 routerPaciente.delete("/:id", deleteOneById);
 routerPaciente.patch("/:id",updateOneById);
+routerPaciente.get("/:id", getPacienteById);
 
 export default routerPaciente;

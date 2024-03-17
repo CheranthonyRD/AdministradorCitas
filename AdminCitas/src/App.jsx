@@ -8,17 +8,13 @@ import usePacientes from "./hooks/usePacientes.js";
 
 
 function App() {
-  
-  const [paciente, setPaciente] = useState({});
-  const [render, setRender] = useState(false);
-  const {pacientes, loadPacientes} = usePacientes({render});
 
   return (
     <div className="h-screen container mx-auto pt-10">
       <Header/>
       <div className="flex gap-5 lg:pl-4">
-        <Formulario pacientes={pacientes} paciente={paciente} setPacientes={loadPacientes} setPaciente={setPaciente} render={render} setRender={setRender}/>
-        <ListadoPacientes pacientes={pacientes}/>
+        <Formulario />
+        <ListadoPacientes />
       </div>
     </div>
   )

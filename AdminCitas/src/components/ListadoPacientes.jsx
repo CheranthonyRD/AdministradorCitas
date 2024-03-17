@@ -11,9 +11,7 @@ function ListadoPacientes({pacientes}){
             {pacientes && pacientes.length ? (
                 <>
                     <div className="flex flex-wrap gap-3 justify-center">
-                        {pacientes.length >= 1 && pacientes.map((p)=>
-                            <Paciente key={p._id} paciente={p} setRender={setRender}/>
-                        )}
+                        
                     </div> 
                 </>
             ) : (

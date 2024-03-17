@@ -12,6 +12,17 @@ const getAllPacientes = async (req, res)=>{
     return res.status(400).json([]);
 }
 
+const getPacienteById = async(req, res) => {
+    const {id} = req.params;
+    const paciente = await pacienteModel.getOneById({id:id});
+    
+    if(!paciente){
+        return res.status(404).send({});
+    }
+
+    return res.status(200).send(paciente);
+}
+
 const deleteAllPacientes = async (req, res)=>{
     const deleteMany = await pacienteModel.deleteAll();
 
@@ -65,4 +76,4 @@ const getRandomId = () =>{
 }
 
 
-export {getAllPacientes, deleteAllPacientes, createNewPaciente, deleteOneById, updateOneById}
+export {getPacienteById, getAllPacientes, deleteAllPacientes, createNewPaciente, deleteOneById, updateOneById}

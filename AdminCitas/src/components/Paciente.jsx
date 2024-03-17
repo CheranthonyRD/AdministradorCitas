@@ -39,11 +39,11 @@ function Paciente({paciente, setPaciente, setPacientes}){
             <div className="w-full h-1/6 rounded-b-xl flex">
 
                 <div className="w-1/2 flex justify-center items-center">
-                    <i onClick={editPaciente} className="fa-solid fa-file-pen text-2xl text-blue-600 hover:text-blue-700 hover:cursor-pointer"></i>
+                    <i  className="fa-solid fa-file-pen text-2xl text-blue-600 hover:text-blue-700 hover:cursor-pointer"></i>
                 </div>
 
                 <div className="w-1/2 flex justify-center items-center border-l-2 border-l-gray-200">
-                    <i onClick={deletePaciente} className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
+                    <i  className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
                 </div>
             </div>
         </div>
