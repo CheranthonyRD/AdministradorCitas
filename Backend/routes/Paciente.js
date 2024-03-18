@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getPacienteById,getAllPacientes, deleteAllPacientes, createNewPaciente, deleteOneById, updateOneById } from "../controllers/PacienteController.js";
+import { getPacienteById,
+         getAllPacientes, 
+         createNewPaciente, 
+         deleteOneById, 
+         updateOneById } from "../controllers/PacienteController.js";
 
 const routerPaciente = Router();
 

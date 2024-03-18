@@ -7,7 +7,7 @@ export async function getAllPacientes(){
     const response = await fetch(URL);
     
     if(response.status !== 200){
-        return false;
+        return [];
     }
     const result = await response.json();
     return result;
@@ -35,5 +35,27 @@ export async function updatePaciente({id, paciente}){
 
     const response = await fetch(url, options);
 
-    return response.ok;
+    return (response.ok) ? true : false;
+}
+
+export async function deletePaciente({id}){
+    const method = "DELETE";  
+    const options ={method};
+    const url = `${URL}${id}`;
+
+    const response = await fetch(url, options);
+
+    return (response.ok) ? true : false;
+}
+
+export async function getOnePaciente({id}){
+    const url = `${URL}${id}`;
+    const response = await fetch(url);
+
+    if(!response.ok){
+        return {};
+    }
+
+    const paciente = await fetch(url);
+    return paciente;
 }
