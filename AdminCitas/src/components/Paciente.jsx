@@ -1,8 +1,9 @@
 
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { deletePaciente } from "../services/Paciente.js";
 
-function Paciente({paciente}){
+function Paciente({paciente, loadPacientes}){
     const color = getRandomColor();   
     
     return(
@@ -43,13 +44,24 @@ function Paciente({paciente}){
                 </div>
 
                 <div className="w-1/2 flex justify-center items-center border-l-2 border-l-gray-200">
-                    <i className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
+                    <i onClick={() => {deletePatient({id: paciente._id, deletePaciente, loadPacientes, toast})}} className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
                 </div>
             </div>
         </div>
     );
 }
 
+async function deletePatient({id, deletePaciente, toast, loadPacientes}){
+    const isDeleted = await deletePaciente({id});
+
+    if(!isDeleted){
+        toast.error("No fue posible eliminar el paciente");
+        return;
+    }
+
+    toast.success("Paciente eliminado correctamente");
+    loadPacientes();
+}
 
 function getRandomColor(){
     const colors = ["bg-emerald-700", "bg-cyan-700", "bg-sky-700", "bg-indigo-700", 

@@ -2,8 +2,8 @@ import Paciente from "./Paciente";
 import usePacientes from "../hooks/usePacientes.js";
 
 
-function ListadoPacientes(){
-    const {pacientes, loadPacientes} = usePacientes();
+function ListadoPacientes({pacientes, loadPacientes}){
+    
     
     return(
         <div className=" w-3/4 px-4 mb-5">
@@ -15,7 +15,7 @@ function ListadoPacientes(){
                 <>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {pacientes.map( paciente => 
-                            (<Paciente key={paciente._id} paciente={paciente}/>)                        
+                            (<Paciente key={paciente._id} paciente={paciente} loadPacientes={loadPacientes}/>)                        
                         )}
                     </div> 
                 </>

@@ -1,13 +1,11 @@
 import {useEffect, useState} from "react"
 import {ToastContainer, toast, Flip} from "react-toastify"
-import usePacientes from "../hooks/usePacientes.js";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { createNewPaciente } from "../services/Paciente.js";
 
 
-function Formulario(){
-    const {loadPacientes} = usePacientes();
+function Formulario({loadPacientes}){
     const [mascota, setMascota] = useState("");
     const [propietario, setPropietario] = useState("");
     const [email, setEmail] = useState("");

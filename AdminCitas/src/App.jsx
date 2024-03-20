@@ -8,13 +8,14 @@ import usePacientes from "./hooks/usePacientes.js";
 
 
 function App() {
+  const {pacientes, loadPacientes} = usePacientes();
 
   return (
     <div className="h-screen container mx-auto pt-10">
       <Header/>
       <div className="flex gap-5 lg:pl-4">
-        <Formulario />
-        <ListadoPacientes />
+        <Formulario loadPacientes={loadPacientes} />
+        <ListadoPacientes pacientes={pacientes} loadPacientes={loadPacientes} />
       </div>
     </div>
   )
