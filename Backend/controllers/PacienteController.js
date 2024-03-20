@@ -9,7 +9,7 @@ const getAllPacientes = async (req, res)=>{
         return res.status(200).json(all);
     }
 
-    return res.status(400).json([]);
+    return res.json([]);
 }
 
 const getPacienteById = async(req, res) => {

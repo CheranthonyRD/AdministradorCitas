@@ -1,9 +1,9 @@
 
-import { toast} from "react-toastify"
+import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-function Paciente({paciente, setPaciente, setPacientes}){
-    const color = getRandomColor();  
+function Paciente({paciente}){
+    const color = getRandomColor();   
     
     return(
         <div className="h-72 w-1/4 bg-white shadow-lg rounded-xl flex flex-col justify-start">
@@ -21,7 +21,7 @@ function Paciente({paciente, setPaciente, setPacientes}){
 
                 <div id="" className="flex flex-col border-b-2 border-b-gray-200">
                     <p className="font-bold">Email: {" "}</p>
-                    <span>{paciente.email}</span>
+                    <span>{paciente.email ?? 'cheranthony16@gmail.com'}</span>
                 </div>
 
                 <div id="" className="flex flex-col border-b-2 border-b-gray-200">
@@ -43,7 +43,7 @@ function Paciente({paciente, setPaciente, setPacientes}){
                 </div>
 
                 <div className="w-1/2 flex justify-center items-center border-l-2 border-l-gray-200">
-                    <i  className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
+                    <i className="fa-solid fa-trash text-2xl text-red-600 hover:text-red-700 hover:cursor-pointer"></i>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ const URL = `${HOST}${PORT}/paciente/`;
 export async function getAllPacientes(){
     const response = await fetch(URL);
     
-    if(response.status !== 200){
+    if(!response.ok){
         return [];
     }
     const result = await response.json();

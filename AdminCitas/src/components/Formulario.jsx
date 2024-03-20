@@ -1,20 +1,39 @@
 import {useEffect, useState} from "react"
 import {ToastContainer, toast, Flip} from "react-toastify"
+import usePacientes from "../hooks/usePacientes.js";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { createNewPaciente } from "../services/Paciente.js";
 
 
 function Formulario(){
-    
+    const {loadPacientes} = usePacientes();
     const [mascota, setMascota] = useState("");
     const [propietario, setPropietario] = useState("");
     const [email, setEmail] = useState("");
     const [alta, setAlta] = useState("");
     const [sintomas, setSintomas] = useState("");
 
-    function HandleSubmit(e){
-        e.preventDefault();        
+    async function HandleSubmit(e){
+        e.preventDefault(); 
+        
+        const patient = {mascota: "Mila", 
+                         propietario: "Julio",
+                         email: "email@email.com",
+                         alta: new Date().toLocaleDateString('ES-RD'),
+                         sintomas: "Duerme mucho y tiene fiebre"}
+        
+        const isCreatedPatient = await createNewPaciente({paciente: patient});
+
+        if(isCreatedPatient){
+            loadPacientes();
+        }else{
+            console.log("hola mundo");
+        }
+
+
+
+            
     }
     
     return(
@@ -57,7 +76,7 @@ function Formulario(){
                     <label className="block mb-2 text-xl font-bold" htmlFor="">Email</label>
                     <input className="w-full border-2 border-gray-200 py-2 px-1 outline-none rounded-lg" 
                     type="text" 
-                    placeholder="Correo electronico" 
+                    placeholder="...@gmail...@yahoo..." 
                     onChange={e => setEmail(e.target.value)} 
                     value={email}/>
                 </div>

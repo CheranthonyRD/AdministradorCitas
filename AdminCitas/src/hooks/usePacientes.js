@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { getAllPacientes } from "../services/Paciente.js";
 
-export function usePacientes(){
-    const [pacientes, setPacientes] = useState([]);
-    
-    useEffect(()=>{
-        loadPacientes();
-    }, []);
+function usePacientes(){
+    const [pacientes, setPacientes] = useState([]);    
 
     function loadPacientes(){
-        getAllPacientes().then(pacientes =>{setPacientes(pacientes)});
+        getAllPacientes().then( pacientes => {
+            setPacientes(pacientes);
+        });
     }
 
+    useEffect(loadPacientes, []);
 
     return {pacientes, loadPacientes}
 }
